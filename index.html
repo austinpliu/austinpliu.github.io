@@ -12,13 +12,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700;900&text=%E5%88%98%E4%B8%AD%E6%97%A5&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#F5F4EF; --ink:#24282D; --soft:#646A70; --rule:#DCDCD3; --well:#EAEAE3;
+    --paper:#F5F4EF; --sheet:#FBF8F1; --ink:#24282D; --soft:#646A70; --rule:#DCDCD3; --well:#EAEAE3;
     --red:#C8372D; --gold:#D9A441; --sea:#2F4A63; --matcha:#5B7A5A; --rice:#EAE5D7; --mist:#E6EBE3;
     --serif:'Newsreader',Georgia,serif; --sans:'Bricolage Grotesque',system-ui,sans-serif; --han:'Noto Serif SC',serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
-  body{background:var(--paper);color:var(--ink);font:400 19px/1.65 var(--serif);font-optical-sizing:auto;-webkit-font-smoothing:antialiased}
+  body{background:var(--sheet) url(textures/paper.jpg);background-blend-mode:multiply;color:var(--ink);font:400 19px/1.65 var(--serif);font-optical-sizing:auto;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration-color:currentColor;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(100,106,112,.45);transition:text-decoration-color .15s}
   a:hover{text-decoration-color:var(--red)}
   :focus-visible{outline:2px solid var(--red);outline-offset:3px}
@@ -30,12 +30,13 @@
   p+p{margin-top:16px}
 
   /* hero band */
-  .hero{position:relative;overflow:hidden;background:var(--ink);color:var(--paper);padding:96px 0 80px}
+  .hero{position:relative;overflow:hidden;background:var(--ink);color:var(--paper);padding:96px 0 96px;-webkit-mask:linear-gradient(#000 0 0) top/100% calc(100% - 25px) no-repeat,url(textures/tear.svg) bottom left/1200px 26px repeat-x;mask:linear-gradient(#000 0 0) top/100% calc(100% - 25px) no-repeat,url(textures/tear.svg) bottom left/1200px 26px repeat-x}
+  .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:26px;background:#FFFDF8;pointer-events:none;-webkit-mask:url(textures/rim.svg) bottom left/1200px 26px repeat-x;mask:url(textures/rim.svg) bottom left/1200px 26px repeat-x}
   .hero .wrap{position:relative}
   .topo{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke:rgba(245,244,239,.09);stroke-width:1.6;stroke-linejoin:round;-webkit-mask-image:linear-gradient(90deg,rgba(0,0,0,.3) 15%,#000 70%);mask-image:linear-gradient(90deg,rgba(0,0,0,.3) 15%,#000 70%)}
   .topo .ix{stroke:rgba(245,244,239,.18);stroke-width:2.2}
   .topo .sea{stroke:rgba(245,244,239,.055)}
-  .topo-cap{position:absolute;right:24px;bottom:18px;font-size:13px;color:rgba(245,244,239,.38)}
+  .topo-cap{position:absolute;right:24px;bottom:36px;font-size:13px;color:rgba(245,244,239,.38)}
   .hero .head{display:flex;align-items:center;gap:22px;margin-bottom:36px}
   .hero img{width:88px;height:88px;border-radius:50%;object-fit:cover;border:3px solid var(--paper)}
   .hero h1{font:800 clamp(44px,8vw,68px)/1 var(--sans);letter-spacing:-.025em;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
@@ -56,7 +57,7 @@
   .split{border-top:1px solid var(--rule)}
 
   /* photos band */
-  .photos{background:var(--mist)}
+  .photos{background:var(--mist) url(textures/paper.jpg);background-blend-mode:multiply}
   .reel{margin-top:32px}
   .reel-bar{display:flex;justify-content:flex-end;gap:8px;margin-bottom:12px}
   .reel-bar button{width:38px;height:38px;display:grid;place-items:center;border:1.5px solid var(--ink);border-radius:50%;background:none;color:var(--ink);cursor:pointer;transition:background .15s,color .15s,opacity .15s}
@@ -76,6 +77,7 @@
 
   /* interests */
   .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .tile[class]{background-image:url(textures/paper.jpg);background-blend-mode:multiply}
   .tile{border-radius:8px;padding:22px 22px 24px;display:flex;flex-direction:column;gap:10px}
   .pic{display:flex;align-items:center;gap:14px;height:72px}
   .pic svg{height:60px;width:auto;max-width:100%}
@@ -97,7 +99,7 @@
   @media(max-width:560px){
     body{font-size:18px}
     section{padding:56px 0}
-    .hero{padding:64px 0 56px}
+    .hero{padding:64px 0 72px}
     .hero img{width:68px;height:68px}
     .rows .top{flex-direction:column;gap:0}
     .tiles{grid-template-columns:1fr}
