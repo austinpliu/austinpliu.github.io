@@ -8,6 +8,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='3' fill='%23C8372D'/%3E%3Ctext x='16' y='23.5' text-anchor='middle' font-size='21' font-weight='700' fill='%23F5F4EF' font-family='serif'%3E%E5%88%98%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700;900&text=%E5%88%98%E4%B8%AD%E6%97%A5&display=swap" rel="stylesheet">
 <style>
@@ -91,6 +92,34 @@
   .t-lang{background:var(--ink);color:var(--paper)}
   .t-ai{background:var(--red);color:var(--paper)}
 
+  /* ---------- scrapbook board: lives only in the side margins, desktop only ---------- */
+  main section{position:relative}
+  .deco{position:absolute;z-index:2;display:none;pointer-events:none;--r:0deg;transform:rotate(var(--r))}
+  .deco.L{right:calc(50% + 404px)} .deco.R{left:calc(50% + 404px)}
+  @media(min-width:1180px){.deco{display:block}}
+  .hand{font-family:'Caveat',cursive;font-weight:600;line-height:1.05;color:#2b2f36}
+  .postit{width:150px;min-height:136px;padding:24px 14px 14px;font-size:23px;
+    box-shadow:0 1px 1px rgba(0,0,0,.08),0 12px 14px -10px rgba(0,0,0,.35);
+    background-image:linear-gradient(180deg,rgba(0,0,0,.035),transparent 22%),url(textures/paper.jpg);background-blend-mode:multiply}
+  .postit.y{background-color:#F7E27A} .postit.p{background-color:#F5B9C4} .postit.b{background-color:#AEDAEA} .postit.g{background-color:#C9E4A6}
+  .postit small{display:block;font-size:17px;opacity:.75;margin-top:6px}
+  .polaroid{width:164px;padding:9px 9px 34px;background:#FDFCF8;box-shadow:0 1px 2px rgba(0,0,0,.12),0 10px 18px -8px rgba(0,0,0,.32)}
+  .polaroid img{display:block;width:100%;aspect-ratio:1;object-fit:cover;filter:saturate(.9) contrast(1.02)}
+  .polaroid span{position:absolute;left:0;right:0;bottom:6px;text-align:center;font-size:21px}
+  .tape{position:absolute;top:-11px;left:50%;width:72px;height:22px;transform:translateX(-50%) rotate(-3deg);
+    background:rgba(232,214,160,.62);box-shadow:0 1px 2px rgba(0,0,0,.08);
+    -webkit-mask:linear-gradient(90deg,transparent 0 2px,#000 2px calc(100% - 2px),transparent 0),radial-gradient(circle at 0 50%,transparent 2px,#000 2.5px) 0 0/4px 5px;
+    mask:linear-gradient(90deg,transparent 0 2px,#000 2px calc(100% - 2px),transparent 0)}
+  .ticket{width:178px;padding:12px 16px;background:#F3E3C3;color:#5b3a1a;font:600 11px/1.45 var(--sans);letter-spacing:.06em;text-transform:uppercase;
+    border-left:2px dashed rgba(91,58,26,.45);box-shadow:0 8px 14px -8px rgba(0,0,0,.35);
+    background-image:url(textures/paper.jpg);background-blend-mode:multiply}
+  .ticket b{display:block;font:800 20px/1.05 var(--sans);letter-spacing:-.01em;text-transform:none;margin:4px 0}
+  .magnets{gap:3px} @media(min-width:1180px){.deco.magnets{display:flex}}
+  .magnets span{font:800 46px/1 var(--sans);letter-spacing:-.02em;
+    text-shadow:0 1px 0 rgba(255,255,255,.35),0 2px 0 rgba(0,0,0,.18),0 5px 7px rgba(0,0,0,.28)}
+  .magnets span:nth-child(1){color:#D23A2E;transform:rotate(-7deg)} .magnets span:nth-child(2){color:#2F6DB5;transform:translateY(5px) rotate(4deg)}
+  .magnets span:nth-child(3){color:#E8B020;transform:rotate(-3deg)}
+  .yarn{position:absolute;left:0;top:0;pointer-events:none;z-index:1;overflow:visible} .yarn.pins{z-index:3}
   footer{padding:32px 0 56px;font-size:15px;color:var(--soft);border-top:1px solid var(--rule)}
 
   @media(max-width:720px){
@@ -148,6 +177,8 @@
 
 <main>
   <section>
+    <div class="deco L postit y hand" style="top:84px;--r:-4deg"><i data-pin="L1" data-color="#C8372D" data-kind="tack" style="position:absolute;left:50%;top:8px"></i>Coinbase, NYC<small>summer '27 !!</small></div>
+    <div class="deco R polaroid hand" style="top:40px;--r:5deg"><i data-pin="R1" data-color="#2F6DB5" data-kind="tack" style="position:absolute;left:50%;top:8px"></i><img src="photos/sea-cliffs.jpg" alt="" loading="lazy"><span>Arnarstapi</span></div>
     <div class="wrap">
       <h2>Work</h2>
       <ul class="rows">
@@ -176,6 +207,10 @@
   </section>
 
   <section class="split">
+    <div class="deco L ticket" style="top:110px;--r:3deg"><i data-pin="L2" data-color="#3A3F46" data-kind="magnet" style="position:absolute;left:14px;top:-6px"></i><i data-pin="M1" data-color="#3A3F46" data-kind="magnet" style="position:absolute;left:calc(100% - 14px);top:-6px"></i>Admit one<b>Geological Filmmaking</b>Iceland &middot; fall break '26</div>
+    <div class="deco L magnets" style="top:470px;--r:-2deg"><span>L</span><span>I</span><span>U</span></div>
+    <div class="deco R polaroid hand" style="top:150px;--r:-6deg"><i class="tape"></i><i data-pin="R2" data-color="#E8B020" data-kind="tack" style="position:absolute;left:50%;top:-2px"></i><img src="photos/church.jpg" alt="" loading="lazy"><span>Hvalsneskirkja</span></div>
+    <div class="deco R postit p hand" style="top:690px;--r:3deg"><i data-pin="R3" data-color="#5B7A5A" data-kind="tack" style="position:absolute;left:50%;top:8px"></i>AtlasWatch<small>&rarr; live world map</small></div>
     <div class="wrap">
       <h2>On campus</h2>
       <ul class="rows">
@@ -217,6 +252,8 @@
   </section>
 
   <section class="photos">
+    <div class="deco L postit y hand" style="top:260px;--r:4deg"><i data-pin="L3" data-color="#2F6DB5" data-kind="pushpin" style="position:absolute;left:50%;top:8px"></i>あ 中<small>practice every day</small></div>
+    <div class="deco R polaroid hand" style="top:110px;--r:4deg"><i data-pin="R4" data-color="#C8372D" data-kind="tack" style="position:absolute;left:50%;top:8px"></i><img src="photos/waterfall-top.jpg" alt="" loading="lazy"><span>Sk&oacute;gafoss</span></div>
     <div class="wrap">
       <h2>Lately</h2>
       <p class="prose">I just got back from Iceland, where I spent fall break on Geological Filmmaking, a Vanderbilt travel course on filming the landscape and the geology that shaped it.</p>
@@ -257,6 +294,9 @@
   </section>
 
   <section>
+    <div class="deco L polaroid hand" style="top:30px;--r:-5deg"><i data-pin="L4" data-color="#D23A2E" data-kind="magnet" style="position:absolute;left:50%;top:-4px"></i><img src="photos/pho.jpg" alt="" loading="lazy"><span>pho, not ramen</span></div>
+    <div class="deco R postit g hand" style="top:50px;--r:-3deg"><i data-pin="R5" data-color="#C8372D" data-kind="tack" style="position:absolute;left:50%;top:8px"></i>Baku<small>fav track. the castle section!</small></div>
+    <div class="deco R postit b hand" style="top:300px;--r:5deg"><i data-pin="R6" data-color="#E8B020" data-kind="pushpin" style="position:absolute;left:50%;top:8px"></i>middle blocker<small>always at the net</small></div>
     <div class="wrap">
       <h2>Outside of work</h2>
       <!-- Icons: Tabler Icons (MIT, tabler.io); Iconoven ramen-bowl (MIT); Pinhead "person-spiking-volleyball" (CC0); Baku outline from bacinger/f1-circuits (MIT); あ and 中 strokes from KanjiVG by Ulrich Apel (CC BY-SA 3.0, kanjivg.tagaini.net) -->
@@ -353,6 +393,46 @@
       entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('drawn'); io.unobserve(e.target); } });
     },{threshold:.45});
     tiles.forEach(function(t){ io.observe(t); });
+  })();
+  // scrapbook board: draw pins, and red yarn running pin to pin down each margin
+  (function(){
+    var NS='http://www.w3.org/2000/svg', svg=document.createElementNS(NS,'svg'), mq=matchMedia('(min-width:1180px)');
+    svg.setAttribute('class','yarn'); svg.setAttribute('aria-hidden','true');
+    svg.innerHTML='<defs><filter id="ys" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="1.4"/></filter>'+
+      '<radialGradient id="gl" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff" stop-opacity=".75"/><stop offset=".35" stop-color="#fff" stop-opacity="0"/></radialGradient></defs><g class="g"></g>';
+    document.body.appendChild(svg);
+    var psvg=svg.cloneNode(true); psvg.setAttribute('class','yarn pins'); psvg.querySelector('defs').remove(); document.body.appendChild(psvg);
+    function el(tag,attrs,parent){ var e=document.createElementNS(NS,tag); for(var k in attrs) e.setAttribute(k,attrs[k]); parent.appendChild(e); return e; }
+    function pos(p){ var r=p.getBoundingClientRect(); return {x:r.left+scrollX, y:r.top+scrollY, c:p.dataset.color, k:p.dataset.kind, id:p.dataset.pin}; }
+    function draw(){
+      var g=svg.querySelector('.g'), pg=psvg.querySelector('.g'); g.innerHTML=''; pg.innerHTML='';
+      if(!mq.matches){ svg.style.display=psvg.style.display='none'; return; }
+      var W=document.documentElement.clientWidth, H=document.documentElement.scrollHeight;
+      [svg,psvg].forEach(function(v){ v.style.display=''; v.setAttribute('width',W); v.setAttribute('height',H); });
+      var pins=[].map.call(document.querySelectorAll('[data-pin]'),pos);
+      ['L','R'].forEach(function(side){
+        var chain=pins.filter(function(p){return p.id[0]===side}).sort(function(a,b){return a.id.slice(1)-b.id.slice(1)});
+        for(var i=0;i<chain.length-1;i++){
+          var a=chain[i], b=chain[i+1], dx=b.x-a.x, dy=b.y-a.y, d=Math.sqrt(dx*dx+dy*dy);
+          var cx=(a.x+b.x)/2+(i%2?1:-1)*d*.06, cy=(a.y+b.y)/2+d*.05, dd='M'+a.x+' '+a.y+'Q'+cx+' '+cy+' '+b.x+' '+b.y;
+          el('path',{d:dd,fill:'none',stroke:'rgba(0,0,0,.22)','stroke-width':2.4,filter:'url(#ys)',transform:'translate(2 4)'},g);
+          el('path',{d:dd,fill:'none',stroke:'#B3261E','stroke-width':2.2,'stroke-linecap':'round'},g);
+          el('path',{d:dd,fill:'none',stroke:'#E8675B','stroke-width':.8,'stroke-dasharray':'2.5 3.5','stroke-linecap':'round'},g);
+        }
+      });
+      pins.forEach(function(p){
+        var r=p.k==='magnet'?9:p.k==='pushpin'?8:7;
+        el('circle',{cx:p.x+2,cy:p.y+3.5,r:r,fill:'rgba(0,0,0,.28)',filter:'url(#ys)'},pg);
+        if(p.k==='pushpin') el('circle',{cx:p.x,cy:p.y,r:r+2.5,fill:p.c,opacity:.55},pg);
+        el('circle',{cx:p.x,cy:p.y,r:r,fill:p.c,stroke:'rgba(0,0,0,.25)','stroke-width':1},pg);
+        el('circle',{cx:p.x,cy:p.y,r:r,fill:'url(#gl)'},pg);
+      });
+    }
+    var t; function later(){ clearTimeout(t); t=setTimeout(draw,60); }
+    addEventListener('resize',later); addEventListener('load',draw);
+    if(document.fonts&&document.fonts.ready) document.fonts.ready.then(draw);
+    if('ResizeObserver' in window) new ResizeObserver(later).observe(document.body);
+    draw();
   })();
 </script>
 </body>
