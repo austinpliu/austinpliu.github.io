@@ -13,7 +13,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700;900&text=%E5%88%98%E4%B8%AD%E6%97%A5&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#F5F4EF; --sheet:#FBF8F1; --ink:#24282D; --soft:#646A70; --rule:#DCDCD3; --well:#EAEAE3;
+    --paper:#F5F4EF; --sheet:#FBF8F1; --c-work:#FBF8F1; --c-campus:#F2E8D3; --c-photos:#E3EAE0; --c-outside:#E8EDF2; --ink:#24282D; --soft:#646A70; --rule:#DCDCD3; --well:#EAEAE3;
     --red:#C8372D; --gold:#D9A441; --sea:#2F4A63; --matcha:#5B7A5A; --rice:#EAE5D7; --mist:#E6EBE3;
     --serif:'Newsreader',Georgia,serif; --sans:'Bricolage Grotesque',system-ui,sans-serif; --han:'Noto Serif SC',serif;
   }
@@ -55,10 +55,18 @@
   .rows .when{font-size:15px;color:var(--soft);white-space:nowrap}
   .rows .role{color:var(--red);font-size:17px}
   .rows .what{font-size:17px;margin-top:6px;max-width:640px}
-  .split{border-top:1px solid var(--rule)}
 
   /* photos band */
-  .photos{background:var(--mist) url(textures/paper.jpg);background-blend-mode:multiply}
+  /* each section is its own sheet of paper; the sheet above tears over the one below */
+  .s-work,.s-campus,.s-photos,.s-outside,footer{background-image:url(textures/paper.jpg);background-blend-mode:multiply}
+  .s-work{background-color:var(--c-work)} .s-campus{background-color:var(--c-campus)}
+  .s-photos{background-color:var(--c-photos)} .s-outside{background-color:var(--c-outside)}
+  .edge{position:absolute;left:0;right:0;top:0;height:26px;z-index:1;pointer-events:none;filter:drop-shadow(0 2px 2px rgba(0,0,0,.13))}
+  .edge::before,.edge::after{content:"";position:absolute;inset:0;
+    -webkit-mask-repeat:repeat-x;mask-repeat:repeat-x;-webkit-mask-size:1200px 26px;mask-size:1200px 26px;
+    -webkit-mask-position:var(--tx,0px) 0;mask-position:var(--tx,0px) 0}
+  .edge::before{background:#FFFDF8;-webkit-mask-image:url(textures/tear.svg);mask-image:url(textures/tear.svg)}
+  .edge::after{top:-3px;background:var(--prev) url(textures/paper.jpg) 0 var(--bgy,0px);background-blend-mode:multiply;-webkit-mask:linear-gradient(#000 0 0) 0 0/100% 6px no-repeat,url(textures/rimtop.svg) var(--tx,0px) 3px/1200px 26px repeat-x;mask:linear-gradient(#000 0 0) 0 0/100% 6px no-repeat,url(textures/rimtop.svg) var(--tx,0px) 3px/1200px 26px repeat-x}
   .reel{margin-top:32px}
   .reel-bar{display:flex;justify-content:flex-end;gap:8px;margin-bottom:12px}
   .reel-bar button{width:38px;height:38px;display:grid;place-items:center;border:1.5px solid var(--ink);border-radius:50%;background:none;color:var(--ink);cursor:pointer;transition:background .15s,color .15s,opacity .15s}
@@ -120,7 +128,7 @@
   .magnets span:nth-child(1){color:#D23A2E;transform:rotate(-7deg)} .magnets span:nth-child(2){color:#2F6DB5;transform:translateY(5px) rotate(4deg)}
   .magnets span:nth-child(3){color:#E8B020;transform:rotate(-3deg)}
   .yarn{position:absolute;left:0;top:0;pointer-events:none;z-index:1;overflow:visible} .yarn.pins{z-index:3}
-  footer{padding:32px 0 56px;font-size:15px;color:var(--soft);border-top:1px solid var(--rule)}
+  footer{position:relative;padding:58px 0 48px;font-size:15px;color:#9AA0A6;background-color:var(--ink)}
 
   @media(max-width:720px){
     .tiles{grid-template-columns:1fr 1fr}
@@ -176,7 +184,7 @@
 </header>
 
 <main>
-  <section>
+  <section class="s-work">
     <div class="deco L postit y hand" style="top:84px;--r:-4deg"><i data-pin="L1" data-color="#C8372D" data-kind="tack" style="position:absolute;left:50%;top:8px"></i>Coinbase, NYC<small>summer '27 !!</small></div>
     <div class="deco R polaroid hand" style="top:40px;--r:5deg"><i data-pin="R1" data-color="#2F6DB5" data-kind="tack" style="position:absolute;left:50%;top:8px"></i><img src="photos/sea-cliffs.jpg" alt="" loading="lazy"><span>Arnarstapi</span></div>
     <div class="wrap">
@@ -206,7 +214,8 @@
     </div>
   </section>
 
-  <section class="split">
+  <section class="s-campus split">
+    <i class="edge" style="--prev:var(--c-work);--tx:-310px" aria-hidden="true"></i>
     <div class="deco L ticket" style="top:110px;--r:3deg"><i data-pin="L2" data-color="#3A3F46" data-kind="magnet" style="position:absolute;left:14px;top:-6px"></i><i data-pin="M1" data-color="#3A3F46" data-kind="magnet" style="position:absolute;left:calc(100% - 14px);top:-6px"></i>Admit one<b>Geological Filmmaking</b>Iceland &middot; fall break '26</div>
     <div class="deco L magnets" style="top:470px;--r:-2deg"><span>L</span><span>I</span><span>U</span></div>
     <div class="deco R polaroid hand" style="top:150px;--r:-6deg"><i class="tape"></i><i data-pin="R2" data-color="#E8B020" data-kind="tack" style="position:absolute;left:50%;top:-2px"></i><img src="photos/church.jpg" alt="" loading="lazy"><span>Hvalsneskirkja</span></div>
@@ -251,7 +260,8 @@
     </div>
   </section>
 
-  <section class="photos">
+  <section class="s-photos photos">
+    <i class="edge" style="--prev:var(--c-campus);--tx:-655px" aria-hidden="true"></i>
     <div class="deco L postit y hand" style="top:260px;--r:4deg"><i data-pin="L3" data-color="#2F6DB5" data-kind="pushpin" style="position:absolute;left:50%;top:8px"></i>あ 中<small>practice every day</small></div>
     <div class="deco R polaroid hand" style="top:110px;--r:4deg"><i data-pin="R4" data-color="#C8372D" data-kind="tack" style="position:absolute;left:50%;top:8px"></i><img src="photos/waterfall-top.jpg" alt="" loading="lazy"><span>Sk&oacute;gafoss</span></div>
     <div class="wrap">
@@ -293,7 +303,8 @@
     </div>
   </section>
 
-  <section>
+  <section class="s-outside">
+    <i class="edge" style="--prev:var(--c-photos);--tx:-140px" aria-hidden="true"></i>
     <div class="deco L polaroid hand" style="top:30px;--r:-5deg"><i data-pin="L4" data-color="#D23A2E" data-kind="magnet" style="position:absolute;left:50%;top:-4px"></i><img src="photos/pho.jpg" alt="" loading="lazy"><span>pho, not ramen</span></div>
     <div class="deco R postit g hand" style="top:50px;--r:-3deg"><i data-pin="R5" data-color="#C8372D" data-kind="tack" style="position:absolute;left:50%;top:8px"></i>Baku<small>fav track. the castle section!</small></div>
     <div class="deco R postit b hand" style="top:300px;--r:5deg"><i data-pin="R6" data-color="#E8B020" data-kind="pushpin" style="position:absolute;left:50%;top:8px"></i>middle blocker<small>always at the net</small></div>
@@ -337,7 +348,7 @@
   </section>
 </main>
 
-<footer><div class="wrap">© 2026 Austin Liu</div></footer>
+<footer><i class="edge" style="--prev:var(--c-outside);--tx:-880px" aria-hidden="true"></i><div class="wrap">© 2026 Austin Liu</div></footer>
 
 <script>
   document.querySelectorAll('[data-reel]').forEach(function(reel){
@@ -394,6 +405,19 @@
     },{threshold:.45});
     tiles.forEach(function(t){ io.observe(t); });
   })();
+  // torn edges: line the strip's paper grain up with the sheet above it, so there's no seam
+  (function(){
+    function align(){
+      document.querySelectorAll('.edge').forEach(function(e){
+        var prev=e.parentElement.previousElementSibling;
+        if(prev&&prev.tagName==='MAIN') prev=prev.lastElementChild;
+        if(prev) e.style.setProperty('--bgy', -((prev.offsetHeight-3) % 512)+'px');
+      });
+    }
+    align(); addEventListener('load',align); addEventListener('resize',align);
+    if(document.fonts&&document.fonts.ready) document.fonts.ready.then(align);
+  })();
+
   // scrapbook board: draw pins, and red yarn running pin to pin down each margin
   (function(){
     var NS='http://www.w3.org/2000/svg', svg=document.createElementNS(NS,'svg'), mq=matchMedia('(min-width:1180px)');
