@@ -107,13 +107,31 @@
   .motion .hang{animation:sway var(--t,6s) ease-in-out var(--sd,0s) infinite alternate}
   @keyframes sway{from{rotate:-1.6deg}to{rotate:1.6deg}}
   .hero .hang{z-index:auto}
-  .lattice{position:absolute;pointer-events:none;color:#7A4A2E;opacity:.42}
-  .lattice svg{display:block;width:var(--w,150px);height:auto;fill:none;stroke:currentColor;stroke-linejoin:miter}
-  main .hang,.lattice{display:none}
+  main .hang{display:none}
   @media(min-width:1180px){
-    main .hang{display:flex} .lattice{display:block}
+    main .hang{display:flex}
     main .L{left:calc((50% - 380px)/2);translate:-50% 0} main .R{right:calc((50% - 380px)/2);translate:50% 0}
   }
+  /* ---------- margin patterns (drawn in as you scroll) and hero fireworks ---------- */
+  main section>.wrap{position:relative;z-index:1}
+  .pat{position:absolute;top:0;bottom:0;width:calc(50% - 392px);overflow:hidden;pointer-events:none;z-index:0}
+  .pat.pl{left:0;-webkit-mask-image:linear-gradient(90deg,#000 0,rgba(0,0,0,.8) 55%,rgba(0,0,0,.12) 100%);mask-image:linear-gradient(90deg,#000 0,rgba(0,0,0,.8) 55%,rgba(0,0,0,.12) 100%)}
+  .pat.pr{right:0;-webkit-mask-image:linear-gradient(270deg,#000 0,rgba(0,0,0,.8) 55%,rgba(0,0,0,.12) 100%);mask-image:linear-gradient(270deg,#000 0,rgba(0,0,0,.8) 55%,rgba(0,0,0,.12) 100%)}
+  .pat svg{display:block} .pat.pr svg{transform:scaleX(-1)}
+  .pat path{fill:none;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round}
+  .motion .pat path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2s cubic-bezier(.4,0,.2,1) var(--pd,0s)}
+  .motion .pat path.on{stroke-dashoffset:0}
+  @media(max-width:1179px){
+    .pat.pl{display:none}
+    .pat.pr{width:230px;height:200px;bottom:auto;-webkit-mask-image:radial-gradient(ellipse at 100% 0,#000 0,rgba(0,0,0,.5) 40%,transparent 72%);mask-image:radial-gradient(ellipse at 100% 0,#000 0,rgba(0,0,0,.5) 40%,transparent 72%)}
+  }
+  .fw{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;fill:none;stroke-width:1.3;stroke-linecap:round}
+  .fw line{stroke-dasharray:1;stroke-dashoffset:1;opacity:0;animation:fw-ray 2.2s cubic-bezier(.2,.6,.3,1) var(--fd,0s) forwards}
+  .fw circle{opacity:0;animation:fw-dot 2.2s ease-out var(--fd,0s) forwards}
+  @keyframes fw-ray{0%{stroke-dashoffset:1;opacity:0}12%{opacity:.6}55%{stroke-dashoffset:0;opacity:.5}100%{stroke-dashoffset:-1;opacity:0}}
+  @keyframes fw-dot{0%,45%{opacity:0}60%{opacity:.7}100%{opacity:0;transform:translateY(7px)}}
+  .furin .tz{transform-box:fill-box;transform-origin:50% 0}
+  .motion .furin .tz{animation:sway 2.6s ease-in-out infinite alternate}
   .fret{height:13px;margin-bottom:22px;opacity:.5;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='13'%3E%3Cpath d='M0 12H22V1H6V8H15V4.5' fill='none' stroke='%23D9A441' stroke-width='1.4'/%3E%3C/svg%3E") 0 0/26px 13px repeat-x}
   @media(max-width:1179px){.hero .hang.h3{display:none}}
   @media(max-width:720px){.hero .hang.h1{--s:34px!important;--w:40px!important;right:6%!important}.hero .hang.h2{--s:10px!important;--w:30px!important;right:21%!important}}
@@ -154,9 +172,10 @@
 </head>
 <body>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="d-lantern" viewBox="0 0 80 152"><ellipse cx="40" cy="48" rx="37" ry="40" fill="#C8372D"/><g fill="none" stroke="#9A2219" stroke-width="1.4"><ellipse cx="40" cy="48" rx="12" ry="39"/><ellipse cx="40" cy="48" rx="25" ry="39"/><path d="M40 9V87"/></g><g fill="#D9A441"><rect x="25" y="3" width="30" height="8" rx="2"/><rect x="25" y="85" width="30" height="8" rx="2"/><rect x="34" y="0" width="12" height="4" rx="1"/><circle cx="40" cy="103" r="4.2"/></g><path d="M40 93v7" stroke="#D9A441" stroke-width="1.5"/><path d="M40 107L34 148M40 107L37 150M40 107V151M40 107L43 150M40 107L46 148" fill="none" stroke="#C8372D" stroke-width="1.7" stroke-linecap="round"/></symbol><symbol id="d-knot" viewBox="0 0 110 214"><g fill="none" stroke="#C8372D" stroke-width="4.4" stroke-linecap="round"><path d="M55 0v12"/><circle cx="55" cy="14" r="7"/><path d="M18 52C2 44 2 80 18 72M92 52C108 44 108 80 92 72"/><g transform="translate(55 62) rotate(45)"><path d="M-24 -18H24M-18 -24V24M-24 -6H24M-6 -24V24M-24 6H24M6 -24V24M-24 18H24M18 -24V24M24 -18a6 6 0 0 1 0 12M-24 -18a6 6 0 0 0 0 12M-18 24a6 6 0 0 0 12 0M-18 -24a6 6 0 0 1 12 0M24 6a6 6 0 0 1 0 12M-24 6a6 6 0 0 0 0 12M6 24a6 6 0 0 0 12 0M6 -24a6 6 0 0 1 12 0"/></g><path d="M55 104v12"/></g><circle cx="55" cy="121" r="5.5" fill="#D9A441"/><rect x="48" y="128" width="14" height="7" rx="2" fill="#D9A441"/><path d="M51 135L47 208M53 135L51 211M55 135V212M57 135L59 211M59 135L63 208" fill="none" stroke="#C8372D" stroke-width="2" stroke-linecap="round"/></symbol><symbol id="d-fu" viewBox="0 0 120 190"><g transform="translate(60 62) rotate(45)"><rect x="-42" y="-42" width="84" height="84" fill="#C8372D"/><rect x="-36" y="-36" width="72" height="72" fill="none" stroke="#D9A441" stroke-width="1.5"/></g><text x="60" y="79" text-anchor="middle" font-family="'Noto Serif SC',serif" font-weight="900" font-size="46" fill="#E9C46A">福</text><circle cx="60" cy="127" r="4.5" fill="#D9A441"/><path d="M60 131L54 184M60 131L57 187M60 131V188M60 131L63 187M60 131L66 184" fill="none" stroke="#C8372D" stroke-width="1.8" stroke-linecap="round"/></symbol><symbol id="d-panel" viewBox="0 0 150 230"><rect x="3" y="3" width="144" height="224" stroke-width="5"/><g stroke-width="3"><path d="M40 3V227M110 3V227M3 52H147M3 178H147"/><rect x="58" y="84" width="34" height="62"/><path d="M75 52V84M75 146V178M40 115H58M92 115H110"/><path d="M3 28H22V52M147 28H128V52M3 202H22V178M147 202H128V178"/><path d="M40 27H110M75 3V27M40 203H110M75 203V227M21 52V178M129 52V178M3 115H21M129 115H147"/></g></symbol><symbol id="d-moon" viewBox="0 0 160 160"><defs><clipPath id="mc"><circle cx="80" cy="80" r="68"/></clipPath></defs><g clip-path="url(#mc)" stroke-width="2.6"><path d="M-164 -10L16 170M16 -10L-164 170M-142 -10L38 170M38 -10L-142 170M-120 -10L60 170M60 -10L-120 170M-98 -10L82 170M82 -10L-98 170M-76 -10L104 170M104 -10L-76 170M-54 -10L126 170M126 -10L-54 170M-32 -10L148 170M148 -10L-32 170M-10 -10L170 170M170 -10L-10 170M12 -10L192 170M192 -10L12 170M34 -10L214 170M214 -10L34 170M56 -10L236 170M236 -10L56 170M78 -10L258 170M258 -10L78 170M100 -10L280 170M280 -10L100 170M122 -10L302 170M302 -10L122 170M144 -10L324 170M324 -10L144 170"/></g><circle cx="80" cy="80" r="68" stroke-width="2.4"/><circle cx="80" cy="80" r="76" stroke-width="5"/></symbol></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="d-lantern" viewBox="0 0 80 152"><ellipse cx="40" cy="48" rx="37" ry="40" fill="#C8372D"/><g fill="none" stroke="#9A2219" stroke-width="1.4"><ellipse cx="40" cy="48" rx="12" ry="39"/><ellipse cx="40" cy="48" rx="25" ry="39"/><path d="M40 9V87"/></g><g fill="#D9A441"><rect x="25" y="3" width="30" height="8" rx="2"/><rect x="25" y="85" width="30" height="8" rx="2"/><rect x="34" y="0" width="12" height="4" rx="1"/><circle cx="40" cy="103" r="4.2"/></g><path d="M40 93v7" stroke="#D9A441" stroke-width="1.5"/><path d="M40 107L34 148M40 107L37 150M40 107V151M40 107L43 150M40 107L46 148" fill="none" stroke="#C8372D" stroke-width="1.7" stroke-linecap="round"/></symbol><symbol id="d-knot" viewBox="0 0 110 214"><g fill="none" stroke="#C8372D" stroke-width="4.4" stroke-linecap="round"><path d="M55 0v12"/><circle cx="55" cy="14" r="7"/><path d="M18 52C2 44 2 80 18 72M92 52C108 44 108 80 92 72"/><g transform="translate(55 62) rotate(45)"><path d="M-24 -18H24M-18 -24V24M-24 -6H24M-6 -24V24M-24 6H24M6 -24V24M-24 18H24M18 -24V24M24 -18a6 6 0 0 1 0 12M-24 -18a6 6 0 0 0 0 12M-18 24a6 6 0 0 0 12 0M-18 -24a6 6 0 0 1 12 0M24 6a6 6 0 0 1 0 12M-24 6a6 6 0 0 0 0 12M6 24a6 6 0 0 0 12 0M6 -24a6 6 0 0 1 12 0"/></g><path d="M55 104v12"/></g><circle cx="55" cy="121" r="5.5" fill="#D9A441"/><rect x="48" y="128" width="14" height="7" rx="2" fill="#D9A441"/><path d="M51 135L47 208M53 135L51 211M55 135V212M57 135L59 211M59 135L63 208" fill="none" stroke="#C8372D" stroke-width="2" stroke-linecap="round"/></symbol><symbol id="d-fu" viewBox="0 0 120 190"><g transform="translate(60 62) rotate(45)"><rect x="-42" y="-42" width="84" height="84" fill="#C8372D"/><rect x="-36" y="-36" width="72" height="72" fill="none" stroke="#D9A441" stroke-width="1.5"/></g><text x="60" y="79" text-anchor="middle" font-family="'Noto Serif SC',serif" font-weight="900" font-size="46" fill="#E9C46A">福</text><circle cx="60" cy="127" r="4.5" fill="#D9A441"/><path d="M60 131L54 184M60 131L57 187M60 131V188M60 131L63 187M60 131L66 184" fill="none" stroke="#C8372D" stroke-width="1.8" stroke-linecap="round"/></symbol></svg>
 <header class="hero">
   <svg class="topo" viewBox="0 0 1209 550" preserveAspectRatio="xMaxYMid slice" aria-hidden="true"></svg>
+  <svg class="fw" aria-hidden="true"></svg>
   <i class="hang h1" style="--s:150px;--w:74px;--t:7s;--sd:-1s;right:7%" aria-hidden="true"><svg viewBox="0 0 80 152"><use href="#d-lantern"/></svg></i>
   <i class="hang h2" style="--s:44px;--w:56px;--t:5.5s;--sd:-3s;right:15.5%" aria-hidden="true"><svg viewBox="0 0 80 152"><use href="#d-lantern"/></svg></i>
   <i class="hang h3" style="--s:236px;--w:48px;--t:6.5s;--sd:-0s;right:22%" aria-hidden="true"><svg viewBox="0 0 80 152"><use href="#d-lantern"/></svg></i>
@@ -180,7 +199,6 @@
 <main>
   <section class="s-work">
     <i class="hang R" style="--s:96px;--w:92px;--t:7s;--sd:-2s;" aria-hidden="true"><svg viewBox="0 0 110 214"><use href="#d-knot"/></svg></i>
-    <i class="lattice L" style="top:330px;--w:150px" aria-hidden="true"><svg viewBox="0 0 160 160"><use href="#d-moon"/></svg></i>
     <div class="wrap">
       <h2>Work</h2>
       <ul class="rows">
@@ -210,7 +228,6 @@
 
   <section class="s-campus split">
     <i class="hang L" style="--s:120px;--w:104px;--t:6s;--sd:-1s;" aria-hidden="true"><svg viewBox="0 0 120 190"><use href="#d-fu"/></svg></i>
-    <i class="lattice R" style="top:600px;--w:140px" aria-hidden="true"><svg viewBox="0 0 150 230"><use href="#d-panel"/></svg></i>
     <i class="edge" style="--prev:var(--c-work);--tx:-310px" aria-hidden="true"></i>
     <div class="wrap">
       <h2>On campus</h2>
@@ -255,7 +272,6 @@
   <section class="s-photos photos">
     <i class="hang R" style="--s:110px;--w:62px;--t:6.5s;--sd:-0s;margin-right:-46px" aria-hidden="true"><svg viewBox="0 0 80 152"><use href="#d-lantern"/></svg></i>
     <i class="hang R" style="--s:210px;--w:46px;--t:5.5s;--sd:-2s;margin-right:44px" aria-hidden="true"><svg viewBox="0 0 80 152"><use href="#d-lantern"/></svg></i>
-    <i class="lattice L" style="top:560px;--w:140px" aria-hidden="true"><svg viewBox="0 0 150 230"><use href="#d-panel"/></svg></i>
     <i class="edge" style="--prev:var(--c-campus);--tx:-655px" aria-hidden="true"></i>
     <div class="wrap">
       <h2>Lately</h2>
@@ -297,8 +313,7 @@
   </section>
 
   <section class="s-outside">
-    <i class="hang L" style="--s:70px;--w:84px;--t:6.5s;--sd:-3s;" aria-hidden="true"><svg viewBox="0 0 110 214"><use href="#d-knot"/></svg></i>
-    <i class="lattice R" style="top:300px;--w:150px" aria-hidden="true"><svg viewBox="0 0 160 160"><use href="#d-moon"/></svg></i>
+    <i class="hang L furin" style="--s:84px;--w:58px;--t:7s;--sd:-3s;" aria-hidden="true"><svg viewBox="0 0 70 190"><path d="M9 40a26 27 0 0 1 52 0v7H9z" fill="rgba(47,74,99,.13)" stroke="#2F4A63" stroke-width="2" stroke-linejoin="round"/><path d="M24 31q5-7 10 0q-5 7-10 0M34 31l5-4v8z" fill="#C8372D"/><circle cx="46" cy="24" r="1.8" fill="#C8372D"/><path d="M35 47v28" stroke="#B98A3A" stroke-width="1.4"/><circle cx="35" cy="62" r="3.4" fill="#D9A441"/><g class="tz"><rect x="26" y="75" width="18" height="96" fill="#FBF8F1" stroke="#C8372D" stroke-width="1.2"/><path d="M35 84v78" stroke="#C8372D" stroke-width="1.2" stroke-dasharray="1 5" stroke-linecap="round"/></g></svg></i>
     <i class="edge" style="--prev:var(--c-photos);--tx:-140px" aria-hidden="true"></i>
     <div class="wrap">
       <h2>Outside of work</h2>
@@ -410,6 +425,76 @@
     if(document.fonts&&document.fonts.ready) document.fonts.ready.then(align);
   })();
 
+  // margin patterns: seigaiha waves, Chinese fret, asanoha, shippo. One per section, drawn row by row as you scroll.
+  (function(){
+    var NS='http://www.w3.org/2000/svg', f=function(n){return n.toFixed(1)};
+    var wave=(function(){            // one scale of seigaiha: three concentric arcs, clipped where the next rows overlap it
+      var R=44, cov=[[-R,R/2],[R,R/2],[0,R]], arcs=[];
+      [R,R*2/3,R/3].forEach(function(r){ var run=null;
+        for(var a=-200;a<=200;a+=2){ var t=a*Math.PI/180, x=r*Math.sin(t), y=-r*Math.cos(t);
+          var vis=a>-200&&a<200&&cov.every(function(c){return (x-c[0])*(x-c[0])+(y-c[1])*(y-c[1])>=R*R-1});
+          if(vis){ if(!run) run={r:r,a0:a,x0:x,y0:y}; run.a1=a; run.x1=x; run.y1=y; } else if(run){ arcs.push(run); run=null; } } });
+      return {h:R/2, row:function(j,w){ var d='', y=j*R/2+R;
+        for(var x=(j%2?R:0)-R;x-R<w;x+=2*R) arcs.forEach(function(a){ d+='M'+f(x+a.x0)+' '+f(y+a.y0)+'A'+a.r+' '+a.r+' 0 '+(a.a1-a.a0>180?1:0)+' 1 '+f(x+a.x1)+' '+f(y+a.y1); });
+        return d; }};
+    })();
+    var fret={h:42, row:function(j,w){ var T=42, p=[[3,3],[39,3],[39,39],[9,39],[9,9],[33,9],[33,33],[15,33],[15,15],[27,15],[27,27],[21,27],[21,21]], d='';
+      for(var i=0;i*T<w;i++){ var fl=(i+j)%2; p.forEach(function(q,k){ d+=(k?'L':'M')+(i*T+(fl?T-q[0]:q[0]))+' '+(j*T+q[1]); }); }
+      return d; }};
+    var hemp=(function(){ var a=62, h=a*Math.sqrt(3)/2;
+      return {h:h, row:function(j,w){ var d='', y=j*h; function L(x1,y1,x2,y2){ d+='M'+f(x1)+' '+f(y1)+'L'+f(x2)+' '+f(y2); }
+        for(var x=(j%2?a/2:0)-a;x-a<w;x+=a){
+          L(x,y,x+a,y); L(x,y,x+a/2,y+h); L(x,y,x-a/2,y+h);
+          var cx=x+a/2, cy=y+h/3; L(cx,cy,x,y); L(cx,cy,x+a,y); L(cx,cy,x+a/2,y+h);
+          cx=x; cy=y+2*h/3; L(cx,cy,x,y); L(cx,cy,x-a/2,y+h); L(cx,cy,x+a/2,y+h); }
+        return d; }};
+    })();
+    var coin={h:46, row:function(j,w){ var D=46, R=D/Math.SQRT2, d='';
+      for(var x=0;x-R<w;x+=D) d+='M'+f(x-R)+' '+(j*D)+'a'+f(R)+' '+f(R)+' 0 1 0 '+f(2*R)+' 0a'+f(R)+' '+f(R)+' 0 1 0 '+f(-2*R)+' 0';
+      return d; }};
+    var plan=[['.s-work',wave,'rgba(47,74,99,.2)'],['.s-campus',fret,'rgba(122,74,46,.2)'],['.s-photos',hemp,'rgba(63,96,62,.24)'],['.s-outside',coin,'rgba(47,74,99,.2)']], pans=[];
+    plan.forEach(function(p){ var sec=document.querySelector(p[0]); if(!sec) return;
+      ['pl','pr'].forEach(function(side){ var el=document.createElement('i'); el.className='pat '+side; el.setAttribute('aria-hidden','true');
+        var svg=document.createElementNS(NS,'svg'); el.appendChild(svg); sec.insertBefore(el,sec.firstChild); pans.push({el:el,svg:svg,gen:p[1],col:p[2],w:-1,h:-1}); }); });
+    function build(){
+      pans.forEach(function(p){ var w=p.el.clientWidth, h=p.el.clientHeight; if(w===p.w&&h===p.h) return; p.w=w; p.h=h;
+        while(p.svg.firstChild) p.svg.removeChild(p.svg.firstChild); p.rows=[];
+        if(w<40||h<40) return; p.svg.setAttribute('width',w); p.svg.setAttribute('height',h);
+        for(var j=-2;(j-1)*p.gen.h<h;j++){ var e=document.createElementNS(NS,'path'); e.setAttribute('d',p.gen.row(j,w)); e.setAttribute('pathLength','1');
+          e.setAttribute('stroke',p.col); e.style.setProperty('--pd',((j*37%10+10)%10*.035).toFixed(2)+'s'); p.svg.appendChild(e); p.rows.push([j*p.gen.h,e]); } });
+      show();
+    }
+    function show(){ var vh=innerHeight;
+      pans.forEach(function(p){ if(!p.rows||!p.rows.length) return; var top=p.el.getBoundingClientRect().top; if(top>vh) return;
+        p.rows.forEach(function(r){ if(!r[2]&&top+r[0]<vh*.9){ r[2]=1; r[1].classList.add('on'); } }); });
+    }
+    var t,tick; function later(){ clearTimeout(t); t=setTimeout(build,120); }
+    addEventListener('scroll',function(){ if(!tick){ tick=1; requestAnimationFrame(function(){ tick=0; show(); }); } },{passive:true});
+    addEventListener('resize',later); addEventListener('load',build);
+    if('ResizeObserver' in window) new ResizeObserver(later).observe(document.querySelector('main'));
+    build();
+  })();
+
+  // hero fireworks: a quiet line burst every few seconds, behind the lanterns
+  (function(){
+    var svg=document.querySelector('.fw'), hero=document.querySelector('.hero'); if(!svg||!document.documentElement.classList.contains('motion')) return;
+    var NS='http://www.w3.org/2000/svg', cols=['#D9A441','#E9C46A','#C8372D','#F5F4EF'], seen=true;
+    new IntersectionObserver(function(e){ seen=e[0].isIntersecting; }).observe(hero);
+    function burst(){
+      if(seen&&!document.hidden){
+        var W=hero.clientWidth, H=hero.clientHeight, small=W<900, g=document.createElementNS(NS,'g');
+        var cx=W*(small?.5+Math.random()*.42:.6+Math.random()*.34), cy=H*(small?.06+Math.random()*.2:.14+Math.random()*.5);
+        var n=12+Math.floor(Math.random()*7), R=(small?34:52)+Math.random()*(small?22:44), col=cols[Math.floor(Math.random()*cols.length)], a0=Math.random()*6.28;
+        for(var i=0;i<n;i++){ var a=a0+i*6.283/n, r1=R*(.82+Math.random()*.3), c=Math.cos(a), s=Math.sin(a), l=document.createElementNS(NS,'line'), fd=(Math.random()*.12).toFixed(2)+'s';
+          l.setAttribute('x1',cx+c*R*.16); l.setAttribute('y1',cy+s*R*.16); l.setAttribute('x2',cx+c*r1); l.setAttribute('y2',cy+s*r1+r1*.06);
+          l.setAttribute('pathLength','1'); l.setAttribute('stroke',col); l.style.setProperty('--fd',fd); g.appendChild(l);
+          if(i%2){ var d=document.createElementNS(NS,'circle'); d.setAttribute('cx',cx+c*r1*1.08); d.setAttribute('cy',cy+s*r1*1.08+r1*.08); d.setAttribute('r',1.3); d.setAttribute('fill',col); d.setAttribute('stroke','none'); d.style.setProperty('--fd',fd); g.appendChild(d); } }
+        svg.appendChild(g); setTimeout(function(){ g.remove(); },2600);
+      }
+      setTimeout(burst,2400+Math.random()*3200);
+    }
+    setTimeout(burst,1400);
+  })();
 </script>
 </body>
 </html>
