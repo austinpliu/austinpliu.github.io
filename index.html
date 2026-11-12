@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700;900&text=%E5%88%98%E4%B8%AD%E6%97%A5&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700;900&text=%E5%88%98%E4%B8%AD%E6%97%A5%E7%A6%8F&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#F5F4EF; --sheet:#FBF8F1; --c-work:#FBF8F1; --c-campus:#F2E8D3; --c-photos:#E3EAE0; --c-outside:#E8EDF2; --ink:#24282D; --soft:#646A70; --rule:#DCDCD3; --well:#EAEAE3;
@@ -100,6 +100,24 @@
   .t-ai{background:var(--red);color:var(--paper)}
 
   main section{position:relative}
+  /* ---------- hanging decorations: lanterns, knots, lattice ---------- */
+  .hang{position:absolute;top:0;z-index:0;display:flex;flex-direction:column;align-items:center;pointer-events:none;transform-origin:50% 0}
+  .hang::before{content:"";width:1.5px;height:var(--s,60px);background:#B98A3A;opacity:.8}
+  .hang svg{display:block;width:var(--w,64px);height:auto;overflow:visible}
+  .motion .hang{animation:sway var(--t,6s) ease-in-out var(--sd,0s) infinite alternate}
+  @keyframes sway{from{rotate:-1.6deg}to{rotate:1.6deg}}
+  .hero .hang{z-index:auto}
+  .lattice{position:absolute;pointer-events:none;color:#7A4A2E;opacity:.42}
+  .lattice svg{display:block;width:var(--w,150px);height:auto;fill:none;stroke:currentColor;stroke-linejoin:miter}
+  main .hang,.lattice{display:none}
+  @media(min-width:1180px){
+    main .hang{display:flex} .lattice{display:block}
+    main .L{left:calc((50% - 380px)/2);translate:-50% 0} main .R{right:calc((50% - 380px)/2);translate:50% 0}
+  }
+  .fret{height:13px;margin-bottom:22px;opacity:.5;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='13'%3E%3Cpath d='M0 12H22V1H6V8H15V4.5' fill='none' stroke='%23D9A441' stroke-width='1.4'/%3E%3C/svg%3E") 0 0/26px 13px repeat-x}
+  @media(max-width:1179px){.hero .hang.h3{display:none}}
+  @media(max-width:720px){.hero .hang.h1{--s:34px!important;--w:40px!important;right:6%!important}.hero .hang.h2{--s:10px!important;--w:30px!important;right:21%!important}}
+  @media(prefers-reduced-motion:reduce){.hang{animation:none!important}}
   footer{position:relative;padding:58px 0 48px;font-size:15px;color:#9AA0A6;background-color:var(--ink)}
 
   @media(max-width:720px){
@@ -136,8 +154,12 @@
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="d-lantern" viewBox="0 0 80 152"><ellipse cx="40" cy="48" rx="37" ry="40" fill="#C8372D"/><g fill="none" stroke="#9A2219" stroke-width="1.4"><ellipse cx="40" cy="48" rx="12" ry="39"/><ellipse cx="40" cy="48" rx="25" ry="39"/><path d="M40 9V87"/></g><g fill="#D9A441"><rect x="25" y="3" width="30" height="8" rx="2"/><rect x="25" y="85" width="30" height="8" rx="2"/><rect x="34" y="0" width="12" height="4" rx="1"/><circle cx="40" cy="103" r="4.2"/></g><path d="M40 93v7" stroke="#D9A441" stroke-width="1.5"/><path d="M40 107L34 148M40 107L37 150M40 107V151M40 107L43 150M40 107L46 148" fill="none" stroke="#C8372D" stroke-width="1.7" stroke-linecap="round"/></symbol><symbol id="d-knot" viewBox="0 0 110 214"><g fill="none" stroke="#C8372D" stroke-width="4.4" stroke-linecap="round"><path d="M55 0v12"/><circle cx="55" cy="14" r="7"/><path d="M18 52C2 44 2 80 18 72M92 52C108 44 108 80 92 72"/><g transform="translate(55 62) rotate(45)"><path d="M-24 -18H24M-18 -24V24M-24 -6H24M-6 -24V24M-24 6H24M6 -24V24M-24 18H24M18 -24V24M24 -18a6 6 0 0 1 0 12M-24 -18a6 6 0 0 0 0 12M-18 24a6 6 0 0 0 12 0M-18 -24a6 6 0 0 1 12 0M24 6a6 6 0 0 1 0 12M-24 6a6 6 0 0 0 0 12M6 24a6 6 0 0 0 12 0M6 -24a6 6 0 0 1 12 0"/></g><path d="M55 104v12"/></g><circle cx="55" cy="121" r="5.5" fill="#D9A441"/><rect x="48" y="128" width="14" height="7" rx="2" fill="#D9A441"/><path d="M51 135L47 208M53 135L51 211M55 135V212M57 135L59 211M59 135L63 208" fill="none" stroke="#C8372D" stroke-width="2" stroke-linecap="round"/></symbol><symbol id="d-fu" viewBox="0 0 120 190"><g transform="translate(60 62) rotate(45)"><rect x="-42" y="-42" width="84" height="84" fill="#C8372D"/><rect x="-36" y="-36" width="72" height="72" fill="none" stroke="#D9A441" stroke-width="1.5"/></g><text x="60" y="79" text-anchor="middle" font-family="'Noto Serif SC',serif" font-weight="900" font-size="46" fill="#E9C46A">福</text><circle cx="60" cy="127" r="4.5" fill="#D9A441"/><path d="M60 131L54 184M60 131L57 187M60 131V188M60 131L63 187M60 131L66 184" fill="none" stroke="#C8372D" stroke-width="1.8" stroke-linecap="round"/></symbol><symbol id="d-panel" viewBox="0 0 150 230"><rect x="3" y="3" width="144" height="224" stroke-width="5"/><g stroke-width="3"><path d="M40 3V227M110 3V227M3 52H147M3 178H147"/><rect x="58" y="84" width="34" height="62"/><path d="M75 52V84M75 146V178M40 115H58M92 115H110"/><path d="M3 28H22V52M147 28H128V52M3 202H22V178M147 202H128V178"/><path d="M40 27H110M75 3V27M40 203H110M75 203V227M21 52V178M129 52V178M3 115H21M129 115H147"/></g></symbol><symbol id="d-moon" viewBox="0 0 160 160"><defs><clipPath id="mc"><circle cx="80" cy="80" r="68"/></clipPath></defs><g clip-path="url(#mc)" stroke-width="2.6"><path d="M-164 -10L16 170M16 -10L-164 170M-142 -10L38 170M38 -10L-142 170M-120 -10L60 170M60 -10L-120 170M-98 -10L82 170M82 -10L-98 170M-76 -10L104 170M104 -10L-76 170M-54 -10L126 170M126 -10L-54 170M-32 -10L148 170M148 -10L-32 170M-10 -10L170 170M170 -10L-10 170M12 -10L192 170M192 -10L12 170M34 -10L214 170M214 -10L34 170M56 -10L236 170M236 -10L56 170M78 -10L258 170M258 -10L78 170M100 -10L280 170M280 -10L100 170M122 -10L302 170M302 -10L122 170M144 -10L324 170M324 -10L144 170"/></g><circle cx="80" cy="80" r="68" stroke-width="2.4"/><circle cx="80" cy="80" r="76" stroke-width="5"/></symbol></svg>
 <header class="hero">
   <svg class="topo" viewBox="0 0 1209 550" preserveAspectRatio="xMaxYMid slice" aria-hidden="true"></svg>
+  <i class="hang h1" style="--s:150px;--w:74px;--t:7s;--sd:-1s;right:7%" aria-hidden="true"><svg viewBox="0 0 80 152"><use href="#d-lantern"/></svg></i>
+  <i class="hang h2" style="--s:44px;--w:56px;--t:5.5s;--sd:-3s;right:15.5%" aria-hidden="true"><svg viewBox="0 0 80 152"><use href="#d-lantern"/></svg></i>
+  <i class="hang h3" style="--s:236px;--w:48px;--t:6.5s;--sd:-0s;right:22%" aria-hidden="true"><svg viewBox="0 0 80 152"><use href="#d-lantern"/></svg></i>
   <span class="topo-cap"></span>
   <div class="wrap">
     <div class="head">
@@ -157,6 +179,8 @@
 
 <main>
   <section class="s-work">
+    <i class="hang R" style="--s:96px;--w:92px;--t:7s;--sd:-2s;" aria-hidden="true"><svg viewBox="0 0 110 214"><use href="#d-knot"/></svg></i>
+    <i class="lattice L" style="top:330px;--w:150px" aria-hidden="true"><svg viewBox="0 0 160 160"><use href="#d-moon"/></svg></i>
     <div class="wrap">
       <h2>Work</h2>
       <ul class="rows">
@@ -185,6 +209,8 @@
   </section>
 
   <section class="s-campus split">
+    <i class="hang L" style="--s:120px;--w:104px;--t:6s;--sd:-1s;" aria-hidden="true"><svg viewBox="0 0 120 190"><use href="#d-fu"/></svg></i>
+    <i class="lattice R" style="top:600px;--w:140px" aria-hidden="true"><svg viewBox="0 0 150 230"><use href="#d-panel"/></svg></i>
     <i class="edge" style="--prev:var(--c-work);--tx:-310px" aria-hidden="true"></i>
     <div class="wrap">
       <h2>On campus</h2>
@@ -227,6 +253,9 @@
   </section>
 
   <section class="s-photos photos">
+    <i class="hang R" style="--s:110px;--w:62px;--t:6.5s;--sd:-0s;margin-right:-46px" aria-hidden="true"><svg viewBox="0 0 80 152"><use href="#d-lantern"/></svg></i>
+    <i class="hang R" style="--s:210px;--w:46px;--t:5.5s;--sd:-2s;margin-right:44px" aria-hidden="true"><svg viewBox="0 0 80 152"><use href="#d-lantern"/></svg></i>
+    <i class="lattice L" style="top:560px;--w:140px" aria-hidden="true"><svg viewBox="0 0 150 230"><use href="#d-panel"/></svg></i>
     <i class="edge" style="--prev:var(--c-campus);--tx:-655px" aria-hidden="true"></i>
     <div class="wrap">
       <h2>Lately</h2>
@@ -268,6 +297,8 @@
   </section>
 
   <section class="s-outside">
+    <i class="hang L" style="--s:70px;--w:84px;--t:6.5s;--sd:-3s;" aria-hidden="true"><svg viewBox="0 0 110 214"><use href="#d-knot"/></svg></i>
+    <i class="lattice R" style="top:300px;--w:150px" aria-hidden="true"><svg viewBox="0 0 160 160"><use href="#d-moon"/></svg></i>
     <i class="edge" style="--prev:var(--c-photos);--tx:-140px" aria-hidden="true"></i>
     <div class="wrap">
       <h2>Outside of work</h2>
@@ -309,7 +340,7 @@
   </section>
 </main>
 
-<footer><i class="edge" style="--prev:var(--c-outside);--tx:-880px" aria-hidden="true"></i><div class="wrap">© 2026 Austin Liu</div></footer>
+<footer><i class="edge" style="--prev:var(--c-outside);--tx:-880px" aria-hidden="true"></i><div class="wrap"><div class="fret" aria-hidden="true"></div>© 2026 Austin Liu</div></footer>
 
 <script>
   document.querySelectorAll('[data-reel]').forEach(function(reel){
