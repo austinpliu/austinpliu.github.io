@@ -132,7 +132,11 @@
   .motion .furin .tz{animation:sway 2.6s ease-in-out infinite alternate}
   .fret{height:13px;margin-bottom:22px;opacity:.5;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='13'%3E%3Cpath d='M0 12H22V1H6V8H15V4.5' fill='none' stroke='%23D9A441' stroke-width='1.4'/%3E%3C/svg%3E") 0 0/26px 13px repeat-x}
   @media(prefers-reduced-motion:reduce){.hang{animation:none!important}}
-  footer{position:relative;padding:58px 0 48px;font-size:15px;color:#9AA0A6;background-color:var(--ink)}
+  /* ---------- ASCII animals (github.com/DesignerStephen1/ascii-animals, MIT): cranes over the hero, koi in the footer ---------- */
+  .aa{position:absolute;inset:0;width:100%;height:100%;display:block;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  .aa-cranes{opacity:.42} .aa-koi{opacity:.9;cursor:pointer}
+  footer .wrap{position:relative;pointer-events:none}
+  footer{position:relative;padding:210px 0 44px;font-size:15px;color:#9AA0A6;background-color:var(--ink)}
 
   @media(max-width:720px){
     .tiles{grid-template-columns:1fr 1fr}
@@ -171,6 +175,7 @@
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="d-lantern" viewBox="0 0 90 196"><defs><radialGradient id="lg" cx="50%" cy="46%" r="50%"><stop offset="0" stop-color="#FFD88A" stop-opacity=".62"/><stop offset=".55" stop-color="#F29A4A" stop-opacity=".2"/><stop offset="1" stop-color="#F29A4A" stop-opacity="0"/></radialGradient></defs><circle cx="45" cy="5" r="3.6" fill="none" stroke="#D9A441" stroke-width="1.6"/><path d="M32 10h26l5 10H27z" fill="#D9A441"/><rect x="27" y="19" width="36" height="4.5" fill="#B5852F"/><ellipse cx="45" cy="63" rx="41" ry="41" fill="#C8372D"/><ellipse cx="45" cy="63" rx="36" ry="38" fill="url(#lg)"/><g fill="none" stroke="#9F251C" stroke-width="1.2" opacity=".85"><ellipse cx="45" cy="63" rx="29" ry="40.5"/><ellipse cx="45" cy="63" rx="15.5" ry="40.5"/><path d="M45 23v80"/></g><path d="M12 39Q45 27 78 39M12 87Q45 99 78 87" fill="none" stroke="#D9A441" stroke-width="1.6" stroke-linecap="round"/><rect x="27" y="102.5" width="36" height="4.5" fill="#B5852F"/><path d="M27 107h36l-5 9H32z" fill="#D9A441"/><path d="M45 116v8M45 136v8" stroke="#D9A441" stroke-width="1.5"/><rect x="40" y="125" width="10" height="10" rx="1.5" transform="rotate(45 45 130)" fill="none" stroke="#C8372D" stroke-width="2.6"/><rect x="39.5" y="143" width="11" height="6" rx="1.5" fill="#D9A441"/><path d="M39.5 145.5h11" stroke="#B5852F" stroke-width="1"/><path d="M40.5 149h9l2.9 44q-7.4 5 -14.8 0z" fill="#C8372D"/><path d="M43.0 151L41.2 193M45 151V195M47.0 151L48.8 193" stroke="#9F251C" stroke-width=".9" fill="none" stroke-linecap="round"/></symbol><symbol id="d-knot" viewBox="0 0 120 252"><g fill="none" stroke="#C8372D" stroke-width="5.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="60" cy="12" r="7.5"/><path d="M60 19.500V30M60 118v9"/><path d="M24 62C-2 48 -2 100 24 86M96 62C122 48 122 100 96 86M31 67C16 60 16 88 31 81M89 67C104 60 104 88 89 81"/><g transform="translate(60 74) rotate(45)"><path d="M-27 -21H27M-21 -27V27M-27 -7H27M-7 -27V27M-27 7H27M7 -27V27M-27 21H27M21 -27V27M27 -21a7 7 0 0 1 0 14M-27 -21a7 7 0 0 0 0 14M-21 27a7 7 0 0 0 14 0M-21 -27a7 7 0 0 1 14 0M27 7a7 7 0 0 1 0 14M-27 7a7 7 0 0 0 0 14M7 27a7 7 0 0 0 14 0M7 -27a7 7 0 0 1 14 0"/></g><rect x="54" y="128" width="12" height="12" rx="2" transform="rotate(45 60 134)"/></g><g fill="none" stroke="#E8776B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity=".9"><circle cx="60" cy="12" r="7.5"/><path d="M60 19.500V30M60 118v9"/><path d="M24 62C-2 48 -2 100 24 86M96 62C122 48 122 100 96 86M31 67C16 60 16 88 31 81M89 67C104 60 104 88 89 81"/><g transform="translate(60 74) rotate(45)"><path d="M-27 -21H27M-21 -27V27M-27 -7H27M-7 -27V27M-27 7H27M7 -27V27M-27 21H27M21 -27V27M27 -21a7 7 0 0 1 0 14M-27 -21a7 7 0 0 0 0 14M-21 27a7 7 0 0 0 14 0M-21 -27a7 7 0 0 1 14 0M27 7a7 7 0 0 1 0 14M-27 7a7 7 0 0 0 0 14M7 27a7 7 0 0 0 14 0M7 -27a7 7 0 0 1 14 0"/></g><rect x="54" y="128" width="12" height="12" rx="2" transform="rotate(45 60 134)"/></g><path d="M60 142v6" stroke="#C8372D" stroke-width="3"/><circle cx="60" cy="152" r="5" fill="#D9A441"/><rect x="53.5" y="158" width="13" height="6" rx="1.5" fill="#D9A441"/><path d="M53.5 160.5h13" stroke="#B5852F" stroke-width="1"/><path d="M54.5 164h11l3.5 82q-9.0 5 -18.0 0z" fill="#C8372D"/><path d="M57.6 166L55.4 246M60 166V248M62.4 166L64.6 246" stroke="#9F251C" stroke-width=".9" fill="none" stroke-linecap="round"/></symbol><symbol id="d-fu" viewBox="0 0 130 236"><circle cx="65" cy="5" r="3.6" fill="none" stroke="#D9A441" stroke-width="1.6"/><path d="M65 9v5" stroke="#D9A441" stroke-width="1.5"/><g transform="translate(65 72) rotate(45)"><rect x="-46" y="-46" width="92" height="92" rx="2" fill="#C8372D"/><g fill="none" stroke="#D9A441"><rect x="-41" y="-41" width="82" height="82" stroke-width="1.4" opacity=".0"/><rect x="-37.500" y="-37.500" width="75" height="75" stroke-width=".9" opacity=".75"/><g stroke-width="1.5"><path d="M-41 -30V-41H-30M-41 -34.5H-34.500V-41" transform="rotate(0)"/><path d="M-41 -30V-41H-30M-41 -34.5H-34.500V-41" transform="rotate(90)"/><path d="M-41 -30V-41H-30M-41 -34.5H-34.500V-41" transform="rotate(180)"/><path d="M-41 -30V-41H-30M-41 -34.5H-34.500V-41" transform="rotate(270)"/></g></g></g><text x="65" y="91" text-anchor="middle" font-family="'Noto Serif SC',serif" font-weight="900" font-size="52" fill="#EFCB74">福</text><path d="M65 137v7" stroke="#D9A441" stroke-width="1.5"/><circle cx="65" cy="148" r="4.6" fill="#D9A441"/><rect x="59.0" y="154" width="12" height="6" rx="1.5" fill="#D9A441"/><path d="M59.0 156.5h12" stroke="#B5852F" stroke-width="1"/><path d="M60.0 160h10l3.2 68q-8.2 5 -16.4 0z" fill="#C8372D"/><path d="M62.8 162L60.8 228M65 162V230M67.2 162L69.2 228" stroke="#9F251C" stroke-width=".9" fill="none" stroke-linecap="round"/></symbol></svg>
 <header class="hero">
   <svg class="topo" viewBox="0 0 1209 550" preserveAspectRatio="xMaxYMid slice" aria-hidden="true"></svg>
+  <canvas class="aa aa-cranes" aria-hidden="true"></canvas>
   <span class="topo-cap"></span>
   <div class="wrap">
     <div class="head">
@@ -359,7 +364,8 @@
   <svg class="fw" aria-hidden="true"></svg>
 </main>
 
-<footer><i class="edge" style="--prev:var(--c-outside);--tx:-880px" aria-hidden="true"></i><div class="wrap"><div class="fret" aria-hidden="true"></div>© 2026 Austin Liu</div></footer>
+<footer><canvas class="aa aa-koi" aria-hidden="true"></canvas><i class="edge" style="--prev:var(--c-outside);--tx:-880px" aria-hidden="true"></i><div class="wrap"><div class="fret" aria-hidden="true"></div>© 2026 Austin Liu <span style="opacity:.6">· tap the water to feed the koi</span></div></footer>
+<script src="ascii-animals.js" defer></script>
 
 <script>
   document.querySelectorAll('[data-reel]').forEach(function(reel){
@@ -501,6 +507,16 @@
     }
     setTimeout(burst,1600);
   })();
+
+  // ASCII animals: a few far-off cranes crossing the hero, koi in the footer pond (tap to drop food)
+  document.addEventListener('DOMContentLoaded',function(){
+    if(!window.AsciiAnimals) return;
+    var c=document.querySelector('.aa-cranes'), k=document.querySelector('.aa-koi');
+    try{
+      if(c) AsciiAnimals.start(c,{animal:'cranes',theme:'dark',tuning:{density:.3,size:1.5,detail:2.4,direction:12,speed:1,grid:0,fog:.7}});
+      if(k) AsciiAnimals.start(k,{animal:'koi',theme:'dark',tuning:{density:.55,size:1.25,detail:2.4,direction:0,speed:1.2,grid:0}});
+    }catch(e){}
+  });
 </script>
 </body>
 </html>
